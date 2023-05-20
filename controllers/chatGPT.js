@@ -1,4 +1,7 @@
 const openai = require('../models/openai')
+const parsePassword = require('./parsePassword.js')
+// import { parsePassword } from './parsePassword';
+// const { parsePassword } = parsePass
 
 exports.consulta = (req, res, message) => {
     openai
@@ -15,6 +18,8 @@ exports.consulta = (req, res, message) => {
         })
         .then((response) => {
             // Sending the response data back to the client
-            res.send(response.data.choices[0].text);
+            const poema = response.data.choices[0].text
+            const contraseña = parsePassword(response.data.choices[0].text)
+            res.send(`El poema es ${poema} y la contraseña es ${contraseña}`);
         });
 };

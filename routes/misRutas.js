@@ -7,7 +7,7 @@ router.route('/').get(direcciones.inicio)
 router.route('/formulario').get(direcciones.form)
 
 router.route('/consultar').post((req, res) => {
-    chat.consulta(req, res, req.body.pregunta);
+    chat.consulta(req, res, 'Genera una frase de mínimo ocho palabras y máximo ocho palabras');
 });
 
 module.exports = router;
